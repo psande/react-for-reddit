@@ -74,7 +74,12 @@ $module: 'PostCard';
   // Main content. Url, preview image or markup text.
   &__preview {
     position: relative;
-    margin: 0 -0.75rem 1rem;
+    margin: 0 -1rem 1rem;
+
+    @include breakpoint('desktop') {
+      margin: 0 -.75rem 1rem;
+    }
+
 
     a {
       display: block;
@@ -95,13 +100,17 @@ $module: 'PostCard';
     span, svg, i {
       color: $c_white;
       display: inline-block;
-      margin-left: 0.8rem;
+      margin-left: 1rem;
       margin-bottom: 0.5rem;
       max-width: 16rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       font-size: 0.8rem;
+
+      @include breakpoint('desktop') {
+        margin-left: 0.8rem;
+      }
 
       &:hover {
         text-decoration: underline;
@@ -124,11 +133,15 @@ $module: 'PostCard';
     position: relative;
     margin: 0 1rem;
 
+    @include breakpoint('desktop') {
+      margin: 0 0.8rem;
+    }
+
     &:before {
       content: "";
       display: block;
       position: absolute;
-      background: linear-gradient(0deg, $c_dark_1 1%, rgba(0,0,0,0) 90%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(0deg, $c_dark_1 1%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
       top: 0;
       bottom: 0;
       left: 0;
@@ -137,8 +150,12 @@ $module: 'PostCard';
 
     // Class name comes from Reddit.
     // Removes the first margin of the first element.
-    .md > :first-child {
-      margin-top: 0;
+    .md {
+      word-break: break-all;
+
+      & > :first-child {
+        margin-top: 0;
+      }
     }
   }
 
@@ -156,7 +173,7 @@ $module: 'PostCard';
     padding: 0.5rem 0.25rem 0.5rem 0.75rem;
     background: transparentize($c_dark_1, 0.5);
 
-    @include breakpoint('mobile') {
+    @include breakpoint('desktop') {
       padding: 1rem 0.5rem 1rem 1.5rem;
     }
 
@@ -166,7 +183,7 @@ $module: 'PostCard';
       margin-bottom: 0;
       transition: color 0.2s linear;
 
-      @include breakpoint('mobile') {
+      @include breakpoint('desktop') {
         height: 6rem;
       }
 
