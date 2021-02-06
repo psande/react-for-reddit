@@ -1,0 +1,48 @@
+{
+  "name": "reddit-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
+    "classnames": "^2.2.6",
+    "moment": "^2.29.1",
+    "msw": "^0.26.0",
+    "node-sass": "^4.14.1",
+    "numeral": "^2.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "typeface-ibm-plex-sans": "^1.1.13",
+    "typeface-lato": "^1.1.13",
+    "typeface-noto-sans": "^1.1.13"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "api": " node data/server.js",
+    "test": "react-scripts test",
+    "verbose": "react-scripts test --env=jsdom --verbose",
+    "debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

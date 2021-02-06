@@ -1,0 +1,70 @@
+@import 'utils';
+
+$module: 'Loading';
+
+.#{$module} {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+
+  &__dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: $c_reddit;
+    margin: 35px 5px;
+
+    &:nth-child(1) {
+      animation: loading-animation-1 1.3s infinite ease-in;
+    }
+
+    &:nth-child(2) {
+      animation: loading-animation-2 1.3s infinite ease-in;
+    }
+
+    &:nth-child(3) {
+      animation: loading-animation-3 1.3s infinite ease-in;
+    }
+  }
+}
+
+// Animations
+@keyframes loading-animation-1 {
+  0%,
+  70%,
+  100% {
+    opacity: 0.2;
+  }
+
+  30% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-animation-2 {
+  0%,
+  15%,
+  85%,
+  100% {
+    opacity: 0.2;
+  }
+
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-animation-3 {
+  0%,
+  30%,
+  100% {
+    opacity: 0.2;
+  }
+
+  60% {
+    opacity: 1;
+  }
+}

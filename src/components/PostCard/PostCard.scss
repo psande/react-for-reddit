@@ -1,0 +1,248 @@
+@import 'utils';
+
+$module: 'PostCard';
+
+.#{$module} {
+  padding: 0.6rem 0.4rem 0.5rem;
+  border-radius: 4px;
+  background-color: $c_dark_1;
+  border: 1px solid $c_gray_2;
+
+  @include breakpoint('desktop') {
+    padding: 0.6rem 0.75rem 0.5rem;
+  }
+
+  // Info about the post.
+  &__top {
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:visited {
+        color: $c_gray_1;
+      }
+    }
+
+    span, a {
+      color: $c_gray_1;
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      letter-spacing: 0.03rem;
+    }
+
+    // SubReddit.
+    & > a {
+      font-size: 0.85rem;
+      font-weight: 900;
+    }
+
+    // Dot.
+    span:nth-child(2) {
+      position: relative;
+      top: -0.0625rem;
+      font-size: 0.5rem;
+      padding: 0 0.25rem;
+    }
+  }
+
+  // Big title.
+  &__title {
+    font-size: 1.125rem;
+    line-height: 1.4rem;
+    font-weight: 500;
+    margin: 0.65rem 0 1rem;
+
+    a {
+      color: $c_white;
+      text-decoration: none;
+
+      &:visited {
+        color: $c_white;
+      }
+
+      @include breakpoint('desktop') {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Main content. Url, preview image or markup text.
+  &__preview {
+    position: relative;
+    margin: 0 -0.75rem 1rem;
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: $c_white;
+
+      &:visited {
+        color: $c_white;
+      }
+    }
+
+    // Preview Image.
+    img {
+      display: block;
+    }
+
+    // Link.
+    span, svg, i {
+      color: $c_white;
+      display: inline-block;
+      margin-left: 0.8rem;
+      margin-bottom: 0.5rem;
+      max-width: 16rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 0.8rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    // External link icon.
+    svg {
+      color: $c_white;
+      display: inline-block;
+      height: 0.75rem;
+      margin-left: 0;
+    }
+  }
+
+  // Markup content from Reddit.
+  &__content {
+    max-height: 12.5rem;
+    overflow: hidden;
+    position: relative;
+    margin: 0 1rem;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background: linear-gradient(0deg, $c_dark_1 1%, rgba(0,0,0,0) 90%, rgba(0,0,0,0) 100%);
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    // Class name comes from Reddit.
+    // Removes the first margin of the first element.
+    .md > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  // Small image for links.
+  &__thumbnail {
+    // TODO
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    padding: 0.5rem 0.25rem 0.5rem 0.75rem;
+    background: transparentize($c_dark_1, 0.5);
+
+    @include breakpoint('mobile') {
+      padding: 1rem 0.5rem 1rem 1.5rem;
+    }
+
+    svg {
+      height: 3rem;
+      width: auto;
+      margin-bottom: 0;
+      transition: color 0.2s linear;
+
+      @include breakpoint('mobile') {
+        height: 6rem;
+      }
+
+      &:hover {
+        color: $c_reddit;
+      }
+    }
+  }
+
+  // UpVotes, comments and awards.
+  &__bottom {
+    color: $c_gray_1;
+    line-height: 1.2rem;
+    margin-top: -0.5rem;
+
+    svg {
+      position: relative;
+      top: 0.115rem;
+      height: 0.8rem;
+      width: auto;
+      margin-right: 0.125rem;
+    }
+
+    span {
+      font-size: 0.8rem;
+      margin-right: 0.75rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // Tag left of some titles.
+  .LinkFlair {
+    background-color: $c_white;
+    color: $c_dark_2;
+    position: relative;
+    top: -0.2rem;
+    margin-right: 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.125rem 0.5rem 0.25rem 0.5rem;
+    font-weight: 500;
+    border-radius: 20px;
+
+    &--light {
+      color: $c_white;
+      background-color: $c_dark_2;
+    }
+  }
+
+  // Tag for over_18 content.
+  .NsfwTag {
+    border: 1px solid $c_red;
+    color: $c_red;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    padding: 0 0.125rem;
+    font-size: 0.75rem;
+    user-select: none;
+  }
+
+  // Color based on quantity of awards.
+  .Awards {
+    &--red {
+      color: $c_red;
+    }
+
+    &--yellow {
+      color: $c_yellow;
+    }
+
+    &--green {
+      color: $c_green;
+    }
+  }
+}
+
+

@@ -1,0 +1,48 @@
+/**
+ * Colors.
+ */
+
+$c_reddit: #ff4400;
+
+$c_red:    #ff585b;
+$c_green:  #67b358;
+$c_blue:   #4040c3;
+$c_yellow: #e3b84c;
+
+$c_dark_3: #030303;
+$c_dark_2: #151515;
+$c_dark_1: #1a1a1c;
+
+$c_gray_3: #27272a;
+$c_gray_2: #343636;
+$c_gray_1: #818384;
+
+$c_white: #d7dadc;
+
+
+/**
+ * CSS Media Queries.
+ *
+ * Note: Using 832px (card width + margins) as desktop width to have a smooth transition between resolutions.
+ *
+ * Usage:
+ * @include breakpoint('desktop') {
+ *   color: green;
+ * }
+ */
+$breakpoints: (
+  'mobile': 400px,
+  'tablet': 780px,
+  'desktop': 832px
+) !default;
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn 'No value could be retrieved from `#{$breakpoint}`. '
+        + 'Available breakpoints are: #{map-keys($breakpoints)}.';
+  }
+}

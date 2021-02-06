@@ -1,0 +1,10 @@
+@import 'utils';
+
+$module: 'ErrorMsg';
+
+.#{$module} {
+  max-width: 250px;
+  margin: 3.5rem auto;
+  text-align: center;
+  font-size: 1.25rem;
+}

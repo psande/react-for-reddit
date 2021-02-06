@@ -1,0 +1,36 @@
+@import 'utils';
+
+$module: 'button';
+
+#{$module} {
+  display: inline-block;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  color: $c-white;
+  background-color: $c-reddit;
+
+  &:hover {
+    background-color: darken($c-reddit, 10%);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: darken($c-reddit, 20%);
+  }
+
+  &:disabled {
+    background-color: $c_gray;
+    cursor: default;
+  }
+}

@@ -1,0 +1,30 @@
+@import 'utils';
+
+$module: 'HomePage';
+
+.#{$module} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .ActionsBar {
+    margin-bottom: 1rem;
+
+    @include breakpoint('desktop') {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .PostCard {
+    margin-bottom: 0.5rem;
+
+    @include breakpoint('desktop') {
+      margin-bottom: 1.5rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

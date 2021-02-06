@@ -1,8 +1,18 @@
-# Reddit React
+# React for Reddit
 
-Lightweight Reddit web client.
+Lightweight client for Reddit made in React.
 
 See demo [here](https://psande.github.io/reddit-react).
 
-`This is a work in progress. Code will be uploaded soon.`
+`State: IN PROGRESS`
 
+`Unit testing will be uploaded soon.`
+
+### Instructions
+Run first:
+
+`npm install`
+
+Once completed:
+
+`npm start`

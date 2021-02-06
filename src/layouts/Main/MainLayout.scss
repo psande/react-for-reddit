@@ -1,0 +1,29 @@
+@import 'utils';
+
+$module: 'MainLayout';
+
+.#{$module} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__header {
+    width: 100%;
+  }
+
+  &__body {
+    width: calc(100% - 1rem);
+    margin: 1rem 0;
+
+    @include breakpoint('mobile') {
+      width: calc(100% - 2rem);
+      margin: 1rem 0;
+    }
+
+    @include breakpoint('desktop') {
+      width: 800px;
+      margin: 1.5rem 0;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+// Sass
+@import 'utils';
+
+// Reset
+@import-normalize;
+
+// Fonts
+@import 'typeface-lato';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: $c_dark_3;
+}
+
+body {
+  background-color: $c_dark_3;
+  color: $c_white;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
