@@ -6,7 +6,6 @@
 // Libraries
 import moment from 'moment';
 import numeral from 'numeral';
-import unescape from '../../modules/unescape';
 
 // Styles
 import './PostCard.scss';
@@ -24,7 +23,7 @@ const PostCard = props => {
   const reddit_url = 'https://www.reddit.com';
 
   // Links.
-  const urlLink = unescape(post.url);
+  const urlLink = post.url;
   const subRedditLink = reddit_url + '/r/' + post.subreddit;
   const authorLink = reddit_url + '/u/' + post.author;
   const permaLink = reddit_url + post.permalink;
@@ -47,7 +46,7 @@ const PostCard = props => {
     case !!post.selftext:
       linkUrl = false;
       previewUrl = false;
-      contentText = unescape(post.selftext_html);
+      contentText = post.selftext_html;
       //thumbUrl = false;
       isVideo = false;
       break;
@@ -83,8 +82,8 @@ const PostCard = props => {
     case post.post_hint === 'image':
       linkUrl = false;
       previewUrl = post.preview.images[0].variants?.gif
-        ? unescape(post.preview.images[0].variants.gif.source.url)
-        : unescape(post.preview.images[0].source.url);
+        ? post.preview.images[0].variants.gif.source.url
+        : post.preview.images[0].source.url;
       contentText = false;
       //thumbUrl = false;
       isVideo = false;
@@ -93,7 +92,7 @@ const PostCard = props => {
     // Show preview for Reddit hosted video.
     case post.post_hint === 'hosted:video':
       linkUrl = false;
-      previewUrl = unescape(post.preview.images[0].source.url);
+      previewUrl = post.preview.images[0].source.url;
       contentText = false;
       //thumbUrl = false;
       isVideo = true;
@@ -102,7 +101,7 @@ const PostCard = props => {
     // Show preview for external video. ie: YouTube.
     case post.post_hint === 'rich:video':
       linkUrl = false;
-      previewUrl = unescape(post.preview.images[0].source.url);
+      previewUrl = post.preview.images[0].source.url;
       contentText = false;
       //thumbUrl = false;
       isVideo = true;
@@ -150,7 +149,7 @@ const PostCard = props => {
       <div className='PostCard__title'>
         {post.link_flair_text && <span className={'LinkFlair ' + linkFlairColors.color}
                                        style={{backgroundColor: linkFlairColors.backgroundColor}}>{post.link_flair_text}</span>}
-        <a target='_blank' rel='noreferrer' href={permaLink}>{unescape(post.title)}</a>
+        <a target='_blank' rel='noreferrer' href={permaLink}>{post.title}</a>
         {post.over_18 && <span className='NsfwTag'>nsfw</span>}
       </div>
 
@@ -161,7 +160,7 @@ const PostCard = props => {
           {linkUrl && <><i>{urlLink}</i><ExternalLink/></>}
           {isVideo && <div className='PostCard__play'><PlayIcon/></div>}
           {previewUrl && <img src={previewUrl} alt='Described in title.'/>}
-          {contentText && <div className="PostCard__content" dangerouslySetInnerHTML={{__html: contentText}}></div>}
+          {contentText && <div className="PostCard__content" dangerouslySetInnerHTML={{__html: contentText}}/>}
         </a>
       </div>}
 

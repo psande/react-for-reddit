@@ -22,7 +22,7 @@
  */
 
 const FetchApi = async (subReddit = 'popular', loadAfter = false) => {
-  let url = 'https://www.reddit.com/r/' + subReddit + '.json?limit=25';
+  let url = 'https://www.reddit.com/r/' + subReddit + '.json?limit=25&raw_json=1';
   if (loadAfter) url += '&after=' + loadAfter;
 
   let response = await fetch(url);
