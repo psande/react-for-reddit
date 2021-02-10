@@ -6,6 +6,7 @@
 // Libraries
 import moment from 'moment';
 import numeral from 'numeral';
+import classNames from 'classnames';
 
 // Styles
 import './PostCard.scss';
@@ -13,10 +14,11 @@ import './PostCard.scss';
 // Assets
 import {ReactComponent as UpVotesIcon} from '../../assets/icons/arrow-up-circle.svg';
 import {ReactComponent as CommentsIcon} from '../../assets/icons/message-square.svg';
+import {ReactComponent as DateIcon} from '../../assets/icons/clock.svg';
 import {ReactComponent as GoldIcon} from '../../assets/icons/hexagon.svg';
 import {ReactComponent as ExternalLink} from '../../assets/icons/external-link.svg';
 import {ReactComponent as PlayIcon} from '../../assets/icons/play.svg';
-// import LinkIcon from '../../assets/icons/link.svg';
+import LinkIcon from '../../assets/icons/link.svg';
 
 const PostCard = props => {
   const {post} = props;
@@ -38,7 +40,7 @@ const PostCard = props => {
   let previewUrl;
   let linkUrl;
   let contentText;
-  //let thumbUrl;
+  let thumbUrl;
   let isVideo;
   switch (true) {
 
@@ -47,7 +49,7 @@ const PostCard = props => {
       linkUrl = false;
       previewUrl = false;
       contentText = post.selftext_html;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = false;
       break;
 
@@ -56,7 +58,7 @@ const PostCard = props => {
       linkUrl = false;
       previewUrl = false;
       contentText = false;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = false;
       break;
 
@@ -65,7 +67,7 @@ const PostCard = props => {
       linkUrl = false;
       previewUrl = false;
       contentText = false;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = false;
       break;
 
@@ -74,7 +76,7 @@ const PostCard = props => {
       linkUrl = true;
       previewUrl = false;
       contentText = false;
-      //thumbUrl = LinkIcon;
+      thumbUrl = LinkIcon;
       isVideo = false;
       break;
 
@@ -85,7 +87,7 @@ const PostCard = props => {
         ? post.preview.images[0].variants.gif.source.url
         : post.preview.images[0].source.url;
       contentText = false;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = false;
       break;
 
@@ -94,7 +96,7 @@ const PostCard = props => {
       linkUrl = false;
       previewUrl = post.preview.images[0].source.url;
       contentText = false;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = true;
       break;
 
@@ -103,7 +105,7 @@ const PostCard = props => {
       linkUrl = false;
       previewUrl = post.preview.images[0].source.url;
       contentText = false;
-      //thumbUrl = false;
+      thumbUrl = false;
       isVideo = true;
       break;
 
@@ -112,7 +114,9 @@ const PostCard = props => {
       linkUrl = true;
       previewUrl = false;
       contentText = false;
-      // thumbUrl = post.thumbnail;
+      thumbUrl = post.preview?.images[0].source.url
+        ? post.preview.images[0].source.url
+        : post.thumbnail;
       isVideo = false;
   }
 
@@ -141,44 +145,50 @@ const PostCard = props => {
       <div className='PostCard__top'>
         <a target='_blank' rel='noreferrer' href={subRedditLink}>{post.subreddit_name_prefixed}</a>
         <span>•</span>
-        <span>Posted by <a href={authorLink} target='_blank' rel='noreferrer'>{`u/${post.author}`}</a> </span>
-        <span>{moment.unix(post.created_utc).fromNow()}</span>
+        Posted by <a href={authorLink} target='_blank' rel='noreferrer'>{`u/${post.author}`}</a>
       </div>
 
+
       {/*Link Flair, Title and NSFW tag*/}
-      <div className='PostCard__title'>
-        {post.link_flair_text && <span className={'LinkFlair ' + linkFlairColors.color}
-                                       style={{backgroundColor: linkFlairColors.backgroundColor}}>{post.link_flair_text}</span>}
+      <div className={classNames('PostCard__title', {'PostCard--has-thumb': !!thumbUrl})}>
+        {post.link_flair_text &&
+        <span className={'LinkFlair ' + linkFlairColors.color}
+              style={{backgroundColor: linkFlairColors.backgroundColor}}
+        >{post.link_flair_text}</span>}
         <a target='_blank' rel='noreferrer' href={permaLink}>{post.title}</a>
         {post.over_18 && <span className='NsfwTag'>nsfw</span>}
       </div>
 
+
       {/*Url, Preview Image or Markup Text*/}
       {(linkUrl || previewUrl || contentText) &&
-      <div className='PostCard__preview'>
-        <a target='_blank' rel='noreferrer' href={urlLink}>
-          {linkUrl && <><i>{urlLink}</i><ExternalLink/></>}
-          {isVideo && <div className='PostCard__play'><PlayIcon/></div>}
-          {previewUrl && <img src={previewUrl} alt='Described in title.'/>}
-          {contentText && <div className="PostCard__content" dangerouslySetInnerHTML={{__html: contentText}}/>}
-        </a>
-      </div>}
+      <a target='_blank' rel='noreferrer' href={urlLink}
+         className={classNames('PostCard__preview', {'PostCard--full-width': !!previewUrl})}
+      >
+        {linkUrl && <div className='PostCard__link'><span>{urlLink}</span> <ExternalLink/></div>}
+        {isVideo && <div className='PostCard__play'><PlayIcon/></div>}
+        {previewUrl && <img className='PostCard__image' src={previewUrl} alt='...'/>}
+        {contentText && <div className="PostCard__content" dangerouslySetInnerHTML={{__html: contentText}}/>}
+      </a>}
 
 
-      {/* TODO Thumbnail for Links*/}
-      {/*{!!thumbUrl &&*/}
-      {/*<div className='PostCard__thumbnail'>*/}
-      {/*  <a target='_blank' rel='noreferrer' href={urlLink}>*/}
-      {/*    <img src={thumbUrl} alt='Described in title.'/>*/}
-      {/*  </a>*/}
-      {/*</div>}*/}
+      {/* Thumbnail for Links*/}
+      {!!thumbUrl &&
+      <a target='_blank' rel='noreferrer' href={urlLink}
+         className={classNames('PostCard__thumbnail', {'PostCard--default-thumb': post.thumbnail === 'default'})}
+      >
+        <img src={thumbUrl} alt='...'/>
+      </a>}
+
 
       {/*UpVotes, Comments and Awards*/}
       <div className='PostCard__bottom'>
         <span><UpVotesIcon/> {numeral(post.ups).format('0.[0]a')}</span>
         <span><CommentsIcon/> {numeral(post.num_comments).format('0.[0]a')}</span>
+        <span><DateIcon/> {moment.unix(post.created_utc).fromNow(false)}</span>
         {!!awardsCount && <span className={'Awards--' + awardsColor}><GoldIcon/> {numeral(awardsCount).format('0.[0]a')}</span>}
       </div>
+
     </div>
   )
 };

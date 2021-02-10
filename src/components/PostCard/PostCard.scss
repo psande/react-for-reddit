@@ -3,10 +3,11 @@
 $module: 'PostCard';
 
 .#{$module} {
-  padding: 0.6rem 0.4rem 0.5rem;
-  border-radius: 4px;
+  position: relative;
   background-color: $c_dark_1;
   border: 1px solid $c_gray_2;
+  padding: 0.6rem 0.5rem 0.5rem;
+  border-radius: 4px;
 
   @include breakpoint('desktop') {
     padding: 0.6rem 0.75rem 0.5rem;
@@ -14,8 +15,14 @@ $module: 'PostCard';
 
   // Info about the post.
   &__top {
+    color: $c_gray_1;
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+    letter-spacing: 0.03rem;
+
     a {
       text-decoration: none;
+      color: $c_gray_1;
 
       &:hover {
         text-decoration: underline;
@@ -24,23 +31,16 @@ $module: 'PostCard';
       &:visited {
         color: $c_gray_1;
       }
-    }
 
-    span, a {
-      color: $c_gray_1;
-      font-size: 0.8rem;
-      line-height: 1.2rem;
-      letter-spacing: 0.03rem;
-    }
-
-    // SubReddit.
-    & > a {
-      font-size: 0.85rem;
-      font-weight: 900;
+      // SubReddit.
+      &:first-child {
+        font-size: 0.85rem;
+        font-weight: 900;
+      }
     }
 
     // Dot.
-    span:nth-child(2) {
+    span {
       position: relative;
       top: -0.0625rem;
       font-size: 0.5rem;
@@ -71,81 +71,111 @@ $module: 'PostCard';
     }
   }
 
-  // Main content. Url, preview image or markup text.
+  // Main content link.
   &__preview {
+    color: $c_white;
+    display: block;
     position: relative;
-    margin: 0 -1rem 1rem;
+    margin-bottom: 0.6rem;
+    text-decoration: none;
 
-    @include breakpoint('desktop') {
-      margin: 0 -.75rem 1rem;
-    }
-
-
-    a {
-      display: block;
-      text-decoration: none;
+    &:visited {
       color: $c_white;
-
-      &:visited {
-        color: $c_white;
-      }
     }
+  }
 
-    // Preview Image.
-    img {
-      display: block;
-    }
-
-    // Link.
-    span, svg, i {
+  // Link.
+  &__link {
+    span {
       color: $c_white;
       display: inline-block;
-      margin-left: 1rem;
-      margin-bottom: 0.5rem;
-      max-width: 16rem;
       overflow: hidden;
+      max-width: 16rem;
+      font-size: 0.8rem;
       white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 0.8rem;
-
-      @include breakpoint('desktop') {
-        margin-left: 0.8rem;
-      }
+      font-style: italic;
 
       &:hover {
         text-decoration: underline;
       }
     }
 
-    // External link icon.
     svg {
-      color: $c_white;
-      display: inline-block;
-      height: 0.75rem;
-      margin-left: 0;
+      height: 0.8rem;
+      width: auto;
+    }
+  }
+
+  // Play button for videos.
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    padding: 0.5rem 0.25rem 0.5rem 0.75rem;
+    background: transparentize($c_dark_1, 0.5);
+
+    @include breakpoint('desktop') {
+      padding: 1rem 0.5rem 1rem 1.5rem;
+    }
+
+    &:hover {
+      color: $c_reddit;
+    }
+
+    svg {
+      height: 3rem;
+      width: auto;
+      margin-bottom: 0;
+      transition: color 0.2s linear;
+
+      @include breakpoint('desktop') {
+        height: 6rem;
+      }
+    }
+  }
+
+  // Preview Image.
+  &__image {
+    display: block;
+  }
+
+  // For images bleeding out of the card's padding.
+  &--full-width {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+
+    @include breakpoint('desktop') {
+      margin-left: -0.75rem;
+      margin-right: -0.75rem;
     }
   }
 
   // Markup content from Reddit.
   &__content {
-    max-height: 12.5rem;
-    overflow: hidden;
     position: relative;
-    margin: 0 1rem;
-
-    @include breakpoint('desktop') {
-      margin: 0 0.8rem;
-    }
+    overflow: hidden;
+    max-height: 12.5rem;
 
     &:before {
-      content: "";
       display: block;
       position: absolute;
-      background: linear-gradient(0deg, $c_dark_1 1%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+      content: "";
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
+      background: linear-gradient(0deg, transparentize($c_dark_1, 0) 1%, transparentize($c_dark_1, 1) 90%, transparentize($c_dark_1, 1));
+    }
+
+    a {
+      color: $c_white;
+
+      &:visited {
+        color: $c_white;
+      }
     }
 
     // Class name comes from Reddit.
@@ -161,35 +191,50 @@ $module: 'PostCard';
 
   // Small image for links.
   &__thumbnail {
-    // TODO
-  }
+    border: 1px solid $c_gray_2;
+    background-color: $c_gray_3;
+    display: block;
+    overflow: hidden;
+    height: 8rem;
+    margin-bottom: 0.6rem;
+    border-radius: 6px;
 
-  &__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    padding: 0.5rem 0.25rem 0.5rem 0.75rem;
-    background: transparentize($c_dark_1, 0.5);
 
     @include breakpoint('desktop') {
-      padding: 1rem 0.5rem 1rem 1.5rem;
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 6rem;
+      width: 9rem;
+      margin-bottom: 0;
+
+      &:hover img {
+        transform: scale(1.2);
+      }
     }
 
-    svg {
-      height: 3rem;
-      width: auto;
-      margin-bottom: 0;
-      transition: color 0.2s linear;
+    img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform linear 0.1s;
+    }
+  }
 
-      @include breakpoint('desktop') {
-        height: 6rem;
-      }
+  // Narrows the title when thumb is present.
+  &--has-thumb {
+    @include breakpoint('desktop') {
+      width: calc(100% - 10rem);
+    }
+  }
 
-      &:hover {
-        color: $c_reddit;
-      }
+  // Styles the default link icon.
+  &--default-thumb {
+    display: none;
+
+    @include breakpoint('desktop') {
+      display: block;
+      padding: 0.5rem 2rem;
     }
   }
 
@@ -197,7 +242,6 @@ $module: 'PostCard';
   &__bottom {
     color: $c_gray_1;
     line-height: 1.2rem;
-    margin-top: -0.5rem;
 
     svg {
       position: relative;

@@ -3,26 +3,26 @@
 $module: 'ActionsBar';
 
 .#{$module} {
-  width: 100%;
-  padding: 0.75rem 1.5rem;
   background-color: $c_dark_1;
   border: 1px solid $c_gray_2;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
 
-  // TODO Refactor input out to forms.scss
   input {
+    background-color: $c_gray_3;
+    border: 1px solid $c_gray_2;
+    color: $c_white;
     height: 2rem;
     border-radius: 4px;
     box-shadow: none;
     outline: none;
     padding: 1.125rem 1rem;
-    background-color: $c_gray_3;
-    border: 1px solid $c_gray_2;
-    color: $c_white;
     display: block;
     width: 100%;
     font-size: 16px;
   }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -32,15 +32,14 @@ $module: 'ActionsBar';
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
+    background-color: $c_gray_3;
+    border: 1px solid $c_gray_2;
     -webkit-text-fill-color: $c_white;
     -webkit-box-shadow: none;
     transition: background-color 5000s ease-in-out 0s;
-
     box-shadow: none;
     outline: none;
     padding: 1.125rem 1rem;
-    background-color: $c_gray_3;
-    border: 1px solid $c_gray_2;
     color: #d7dadc;
     display: block;
     width: 100%;
