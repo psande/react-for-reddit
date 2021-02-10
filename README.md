@@ -1,18 +1,18 @@
 # React for Reddit
 
-Lightweight client for Reddit made in React.
+A lightweight client for Reddit made in React.
 
-See demo [here](https://psande.github.io/reddit-react).
+See demo [here](https://psande.github.io/react-for-reddit/).
 
 `State: IN PROGRESS`
 
-`Unit testing will be uploaded soon.`
+## Setup
 
-### Instructions
-Run first:
+- Clone repository
+- `npm install`
 
-`npm install`
+## Running
+- `npm start` runs application at http://localhost:3000
 
-Once completed:
-
-`npm start`
+## Building
+- `npm run build` will output production code to `./build`
