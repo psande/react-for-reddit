@@ -16,3 +16,6 @@ See demo [here](https://psande.github.io/react-for-reddit/).
 
 ## Building
 - `npm run build` will output production code to `./build`
+
+## Planning
+Visit the [Projects](https://github.com/psande/react-for-reddit/projects) and [Issues](https://github.com/psande/react-for-reddit/issues) tabs to see what is pending and progress on tasks.
