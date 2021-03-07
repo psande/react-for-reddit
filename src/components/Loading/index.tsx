@@ -1,5 +1,5 @@
 // Styles
-import './Loading.scss';
+import './Loading.scss'
 
 const Loading = () => (
   <div className='Loading' role='alert' aria-busy='true'>
@@ -7,6 +7,6 @@ const Loading = () => (
     <span className='Loading__dot'/>
     <span className='Loading__dot'/>
   </div>
-);
+)
 
-export default Loading;
+export default Loading
