@@ -3,10 +3,10 @@
  */
 
 // Styles
-import './Header.scss';
+import './Header.scss'
 
 // Assets
-import {ReactComponent as RedditReactLogo} from '../../assets/react-for-reddit.svg';
+import {ReactComponent as RedditReactLogo} from '../../assets/react-for-reddit.svg'
 
 const Header = () => (
   <div className='Header'>
@@ -16,6 +16,6 @@ const Header = () => (
       <h2>for Reddit</h2>
     </div>
   </div>
-);
+)
 
-export default Header;
+export default Header

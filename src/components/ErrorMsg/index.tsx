@@ -1,8 +1,8 @@
 // Styles
-import './ErrorMsg.scss';
+import './ErrorMsg.scss'
 
 const ErrorMsg = () => (
   <div className='ErrorMsg'>We can't find any results.</div>
 )
 
-export default ErrorMsg;
+export default ErrorMsg
