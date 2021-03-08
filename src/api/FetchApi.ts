@@ -63,8 +63,6 @@ export interface RedditPost {
   all_awardings: Array<{
     count: number,
   }>,
-
-
 }
 
 // Interface for API response.
