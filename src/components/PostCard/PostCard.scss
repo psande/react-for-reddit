@@ -241,7 +241,9 @@ $module: 'PostCard';
   // UpVotes, comments and awards.
   &__bottom {
     color: $c_gray_1;
+    display: inline-block;
     line-height: 1.2rem;
+    text-decoration: none;
 
     svg {
       position: relative;
