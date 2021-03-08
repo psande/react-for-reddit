@@ -191,12 +191,12 @@ const PostCard = (props: Props) => {
 
 
       {/* UpVotes, Comments and Awards */}
-      <div className='PostCard__bottom'>
+      <a target='_blank' rel='noreferrer' href={permaLink} className='PostCard__bottom'>
         <span><UpVotesIcon/> {numeral(post.ups).format('0.[0]a')}</span>
         <span><CommentsIcon/> {numeral(post.num_comments).format('0.[0]a')}</span>
         <span><DateIcon/> {moment.unix(post.created_utc).fromNow(false)}</span>
         {!!awardsCount && <span className={'Awards--' + awardsColor}><GoldIcon/> {numeral(awardsCount).format('0.[0]a')}</span>}
-      </div>
+      </a>
 
     </div>
   )
