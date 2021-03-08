@@ -50,7 +50,7 @@ const HomePage = () => {
   }, [])
 
   // Main content switch based on fetching
-  const MainContent:React.FC = () => {
+  const MainContent: React.FC = () => {
     switch (fetching) {
       case FetchingState.Loading:
         return <Loading/>
@@ -68,7 +68,7 @@ const HomePage = () => {
   return (
     <div className='HomePage'>
       <ActionsBar filterBySub={getPosts}/>
-      <MainContent />
+      <MainContent/>
     </div>
   )
 }
