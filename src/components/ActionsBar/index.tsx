@@ -3,7 +3,7 @@ import './ActionsBar.scss'
 
 // Types
 type Props = {
-  filterBySub: Function
+  filterBySub: (searchTerm : string) => void
 }
 
 const ActionsBar = (props: Props) => {
