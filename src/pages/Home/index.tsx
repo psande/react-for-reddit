@@ -21,23 +21,26 @@ import ErrorMsg from '../../components/ErrorMsg'
 import './HomePage.scss'
 
 // Types
-type FetchingState = 'loading' | 'done' | 'error'
-
+enum FetchingState {
+  Loading,
+  Done,
+  Error,
+}
 
 const HomePage = () => {
   // State
   const [posts, setPosts] = useState<RedditPost[]>([])
-  const [fetching, setFetching] = useState<FetchingState>('loading')
+  const [fetching, setFetching] = useState<FetchingState>(FetchingState.Loading)
 
   // Fetch posts
   const getPosts = async (searchTerm: string) => {
     try {
-      setFetching('loading')
+      setFetching(FetchingState.Loading)
       const posts = await FetchApi(searchTerm ? searchTerm : 'popular')
       setPosts(posts)
-      setFetching('done')
+      setFetching(FetchingState.Done)
     } catch (err) {
-      setFetching('error')
+      setFetching(FetchingState.Error)
     }
   }
 
@@ -46,17 +49,26 @@ const HomePage = () => {
     getPosts('popular')
   }, [])
 
-  return (
-    <div className='HomePage'>
-      <ActionsBar filterBySub={getPosts}/>
-      {{
-        'loading': <Loading/>,
-        'error': <ErrorMsg/>,
-        'done':
+  // Main content switch based on fetching
+  const MainContent:React.FC = () => {
+    switch (fetching) {
+      case FetchingState.Loading:
+        return <Loading/>
+      case FetchingState.Error:
+        return <ErrorMsg/>
+      case FetchingState.Done:
+        return (
           <div className='HomePage_posts'>
             {posts.map(post => <PostCard key={post.name} post={post}/>)}
           </div>
-      }[fetching]}
+        )
+    }
+  }
+
+  return (
+    <div className='HomePage'>
+      <ActionsBar filterBySub={getPosts}/>
+      <MainContent />
     </div>
   )
 }
