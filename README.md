@@ -12,7 +12,7 @@ See demo [here](https://psande.github.io/react-for-reddit/).
 - `npm install`
 
 ## Running
-- `npm start` runs application at http://localhost:3000
+- `npm run dev` runs application at http://localhost:3000
 
 ## Building
 - `npm run build` will output production code to `./build`
