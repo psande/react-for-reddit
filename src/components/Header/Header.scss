@@ -3,6 +3,9 @@
 $module: 'Header';
 
 .#{$module} {
+  color: $c-white;
+  text-decoration: none;
+  display: block;
   background-color: $c_dark_1;
   border-bottom: 1px solid $c_gray_2;
   font-size: 2rem;
@@ -42,5 +45,7 @@ $module: 'Header';
     margin: 0;
     line-height: 1rem;
     font-size: 0.6rem;
+    letter-spacing: 0.08rem;
+    padding-left: 0.15rem;
   }
 }

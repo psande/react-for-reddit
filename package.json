@@ -9,9 +9,7 @@
     "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "typeface-ibm-plex-sans": "^1.1.13",
-    "typeface-lato": "^1.1.13",
-    "typeface-noto-sans": "^1.1.13"
+    "typeface-lato": "^1.1.13"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -24,18 +22,20 @@
     "@types/numeral": "^2.0.1",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "env-cmd": "^10.1.0",
     "msw": "^0.26.0",
     "node-sass": "^4.14.1",
     "react-scripts": "^4.0.3",
     "typescript": "^4.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "api": " node data/server.js",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "proxy-start": "env-cmd -f .env.proxy react-scripts start",
+    "proxy-build": "env-cmd -f .env.proxy npm run build",
     "test": "react-scripts test",
-    "verbose": "react-scripts test --env=jsdom --verbose",
-    "debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "build": "react-scripts build"
+    "test-verbose": "react-scripts test --env=jsdom --verbose",
+    "test-debug": "react-scripts --inspect-brk test --runInBand --no-cache"
   },
   "eslintConfig": {
     "extends": [

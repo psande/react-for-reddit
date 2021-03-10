@@ -81,16 +81,16 @@ export interface RedditListing {
 }
 
 const FetchApi = async (subReddit: string = 'popular', loadAfter: boolean | string = false): Promise<RedditPost[]> => {
-  let url = 'https://www.reddit.com/r/' + subReddit + '.json?limit=25&raw_json=1';
-  if (loadAfter) url += '&after=' + loadAfter;
+  let url = process.env.REACT_APP_API_URL + subReddit + '.json?limit=25&raw_json=1'
+  if (loadAfter) url += '&after=' + loadAfter
 
-  const response = await fetch(url);
+  const response = await fetch(url)
 
-  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
 
-  const listing: RedditListing = await response.json();
+  const listing: RedditListing = await response.json()
 
-  return listing.data.children.map(post => post.data);
+  return listing.data.children.map(post => post.data)
 }
 
 export {FetchApi as default}
