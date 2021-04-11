@@ -183,6 +183,11 @@ $module: 'PostCard';
     .md {
       word-break: break-all;
 
+      * {
+        word-break: break-all;
+        white-space: break-spaces;
+      }
+
       & > :first-child {
         margin-top: 0;
       }
